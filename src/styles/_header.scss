@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    padding-inline: 2rem;
+    align-items: center;
+    &__brand{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        img{
+            height: 7vh;
+            width: 7vh;
+            border-radius: 50%;
+        }
+    }
+}

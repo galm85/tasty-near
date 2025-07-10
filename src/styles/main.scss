@@ -4,3 +4,22 @@
     box-sizing: border-box;
 }
 
+
+
+.tasty-near-layout{
+  
+    .main{
+        width: 100%;
+        min-height: 80vh;
+        display: flex;
+        padding-inline: 150px;
+        .current-order{
+            width:20vw;
+        }
+        .main-content{
+            flex:1;
+        }
+    }
+    
+}
+@import './header';
