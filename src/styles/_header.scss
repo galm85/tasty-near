@@ -1,9 +1,12 @@
+@use './variables' as *;
+
 .header{
     display: flex;
     height: 10vh;
     justify-content: space-between;
     padding-inline: 2rem;
     align-items: center;
+    background-color: $red;
     &__brand{
         display: flex;
         align-items: center;
