@@ -10,8 +10,8 @@ function Header() {
                 </Link>
             </div>
             <div className='header__navigation'>
-                <NavLink to='/about' className={(isActive) => isActive ? 'active-link' : ''} >About</NavLink>
-                <NavLink to='/walla' className={(isActive) => isActive ? 'active-link' : ''} >Profile</NavLink>
+                <NavLink to='/about' className={(isActive) => isActive ? 'nav-link active-link' : 'nav-link'} >About</NavLink>
+                <NavLink to='/walla' className={(isActive) => isActive ? 'nav-link active-link' : 'nav-link'} >Profile</NavLink>
             </div>
         </div>
     )

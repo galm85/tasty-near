@@ -1,0 +1,16 @@
+[
+         {
+            "id": 135002516780,
+            "restaurantName": "KFC",
+            "address": "2737 Veterans Avenue",
+            "zipCode": "62471",
+            "phone": "+1 618-283-9364",
+            "website": "https://locations.kfc.com/il/vandalia/2737-veterans-avenue",
+            "latitude": "38.9690475",
+            "longitude": "-89.1293869",
+            "stateName": "IL",
+            "cityName": "Vandalia",
+            "hoursInterval": "Mon: 10:30 AM - 10:00 PM | Tue: 10:30 AM - 10:00 PM | Wed: 10:30 AM - 10:00 PM | Thu: 10:30 AM - 10:00 PM | Fri: 10:30 AM - 11:00 PM | Sat: 10:30 AM - 11:00 PM | Sun: 10:30 AM - 10:00 PM",
+            "cuisineType": "American,Fast Food"
+        }
+]
