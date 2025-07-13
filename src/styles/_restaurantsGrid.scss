@@ -1,0 +1,27 @@
+@use './variables' as *;
+
+.restaurants-grid{
+    display: flex;
+    padding: 30px 0;
+    gap: 12px;
+    overflow: scroll;
+    border-bottom: 1px solid $blue;
+    margin-bottom:30px;
+
+    .restaurant-btn{
+        padding: 5px 12px;
+        background-color: $background;
+        border: 1px solid $blue;
+        color: $blue;
+        font-family: $main_font;
+        font-size: 22px;
+        border-radius: 20px;
+        min-width: 100px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        &:hover{
+            color: $background;
+            background-color: $blue;
+        }
+    }
+}

@@ -1,11 +1,14 @@
 @use './variables' as *;
 @use './header';
 @use './footer';
+@use './restaurantsGrid';
+@use './dishesGrid';
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: $main_font;
 }
 
 

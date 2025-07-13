@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRestaurant } from "../context/RestaurantContext"
-
+import RestaurantsGrid from '../ui/RestaurantsGrid'
+import DishesGrid from "../ui/DishesGrid";
 
 const dishesDummy = [
     {
@@ -8,7 +9,7 @@ const dishesDummy = [
         "created_at": "2025-07-13T08:59:11.859819+00:00",
         "title": "Family Pizza",
         "description": "family size pizza with extra cheese",
-        "image": null,
+        "image": "https://jliutdfgvgbtecmowdsf.supabase.co/storage/v1/object/public/tasty-near//pizza.jpg",
         "rating": 4,
         "restaurant_id": 8895455875
     },
@@ -17,7 +18,7 @@ const dishesDummy = [
         "created_at": "2025-07-13T09:00:08.794793+00:00",
         "title": "Home Burger",
         "description": "Burger with meat ketchop and salat with fries",
-        "image": null,
+        "image": "https://jliutdfgvgbtecmowdsf.supabase.co/storage/v1/object/public/tasty-near//hamburger.jpeg",
         "rating": 3,
         "restaurant_id": 55587485598
     }
@@ -60,27 +61,13 @@ function Dashboard() {
    
    
     return ( 
-        <div>
+        <div className="dashboard">
             <h1>Dashboard</h1>
             {loading ? <p>Loading...</p> : 
-            <>
-            
-            <div>
-                {restaurantsDummy.map(restaurant => 
-                    <div key={restaurant.id}>
-                        <h3>{restaurant.title}</h3>
-                    </div>
-                )}    
+                <div className="dashboard__content">
+                <RestaurantsGrid restaurants={restaurantsDummy}/>
+                <DishesGrid dishes={dishesDummy}/>
             </div>
-
-            <div>
-                {dishesDummy.map(dish => (
-                    <div key={dish.id}>
-                        <h3>{dish.title}</h3>
-                    </div>
-                ))}
-            </div>
-            </>
             }
             
         </div>
