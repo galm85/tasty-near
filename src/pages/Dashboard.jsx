@@ -53,14 +53,9 @@ function Dashboard() {
 
     const {restaurants,loading,error,dishes,getAllRestaurants,getAllDishes,getRestaurantDishes}  = useRestaurant()
    
-    useEffect(()=>{
-        if(!restaurants){
-            // getAllRestaurants();
-        }
-        if(!dishes){
-            // getAllDishes();
-        }
-
+    useEffect(()=>{      
+        getAllRestaurants();
+        getAllDishes();
     },[])
    
    
@@ -69,9 +64,9 @@ function Dashboard() {
             <h1>Dashboard</h1>
             {loading ? <p>Loading...</p> : 
                 <div className="dashboard__content">
-                <RestaurantsGrid restaurants={restaurantsDummy}/>
-                <DishesGrid dishes={dishesDummy}/>
-            </div>
+                    <RestaurantsGrid restaurants={restaurants}/>
+                    <DishesGrid dishes={dishes}/>
+                </div>
             }
             
         </div>

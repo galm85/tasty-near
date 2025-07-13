@@ -6,7 +6,7 @@ function DishesGrid({dishes}) {
             {dishes.map(dish => (
                 <Link key={dish.id} to={`/dish/${dish.id}`} className="dish" state={{dish}}>
                     <img className="dish-image" src={dish.image} alt={dish.title} />
-                    <p className="dish-title">{dish.title}</p>
+                    <p className="dish-title">{dish.title}<span>{dish.price}</span></p>
                     </Link>
             ))}
         </div>

@@ -1,4 +1,4 @@
-import React,{createContext,useContext,useState,useEffect, Children, use} from 'react';
+import React,{createContext,useContext,useState} from 'react';
 import supabase from '../services/supabase';
 
 // create the context
@@ -24,6 +24,7 @@ export const RestaurantProvider = ({children}) => {
 
 
     const getAllRestaurants = async ()=>{
+        console.log('www')
         try {
             setLoading(true);
             setError(null);
