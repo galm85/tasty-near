@@ -8,20 +8,23 @@ import Login from './pages/Login';
 import About from './pages/About';
 import AppLayout from "./ui/AppLayout";
 
+import { RestaurantProvider } from "./context/RestaurantContext";
 
 function App() {
- 
+
+
+
 
   return (
     <BrowserRouter>
-   
       <Routes>
-          <Route element={<AppLayout/>}>
+          <Route element={<RestaurantProvider><AppLayout/></RestaurantProvider>}>
             <Route index element={<Dashboard/>}/>
             <Route path="about" element={<About/>}/>
             <Route path="restaurant/:id" element={<Restaurant/>}/>
             <Route path="dish/:id" element={<Dish/>}/>
           </Route>
+         
           <Route path="login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
