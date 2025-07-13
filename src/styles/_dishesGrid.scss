@@ -30,3 +30,44 @@
     }
     
 }
+
+.dish-page{
+    padding: 20px 10px;
+    width: 900px;
+    &__title{
+        color: $blue;
+        font-size: 42px;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-block: 30px;
+    }
+
+    &__content{
+        display: flex;
+        gap: 30px;
+    }
+
+    &__image{
+        width: 450px;
+        object-fit: contain;
+        height: auto;
+    }
+
+    &__description{
+        font-size: 22px;
+        color: $text;
+        font-weight: 300;
+        flex: 1;
+    }
+
+    &__price{
+        font-size: 42px;
+        color: $text;
+        padding: 20px;
+    }
+
+    &__actions{
+        display: flex;
+        justify-content: space-between;
+    }
+}

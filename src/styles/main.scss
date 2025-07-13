@@ -30,3 +30,37 @@
     
 }
 
+
+//Buttons
+.btn{
+
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: none;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: transparent;
+
+}
+
+.order-btn{
+    color: $blue;
+    border: 1px solid $blue;
+    &:hover{
+        color: $background;
+        background-color: $blue;
+    }
+}
+
+.return-btn{
+    color: $background;
+    border: 1px solid $red;
+    background-color: $red;
+    &:hover{
+        color: $red;
+        background-color: $background;
+    }
+}

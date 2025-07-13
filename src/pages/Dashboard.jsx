@@ -54,8 +54,12 @@ function Dashboard() {
     const {restaurants,loading,error,dishes,getAllRestaurants,getAllDishes,getRestaurantDishes}  = useRestaurant()
    
     useEffect(()=>{
-        // getAllRestaurants();
-        // getAllDishes();
+        if(!restaurants){
+            // getAllRestaurants();
+        }
+        if(!dishes){
+            // getAllDishes();
+        }
 
     },[])
    
