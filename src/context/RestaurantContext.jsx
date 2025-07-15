@@ -24,7 +24,6 @@ export const RestaurantProvider = ({children}) => {
 
 
     const getAllRestaurants = async ()=>{
-        console.log('www')
         try {
             setLoading(true);
             setError(null);

@@ -10,6 +10,7 @@ import AppLayout from "./ui/AppLayout";
 
 import { RestaurantProvider } from "./context/RestaurantContext";
 import { useUsers } from "./context/UserContext";
+import { OrdersProvider } from "./context/OrderContext";
 
 function App() {
 
@@ -27,12 +28,18 @@ function App() {
           </>
             :
           <>
-            <Route element={<RestaurantProvider><AppLayout/></RestaurantProvider>}>
-              <Route index element={<Dashboard/>}/>
-              <Route path="about" element={<About/>}/>
-              <Route path="restaurant/:id" element={<Restaurant/>}/>
-              <Route path="dish/:id" element={<Dish/>}/>
-            </Route>
+            <Route element={
+                <RestaurantProvider>
+                  <OrdersProvider>
+                    <AppLayout/>
+                  </OrdersProvider>
+                </RestaurantProvider>
+            }>
+                <Route index element={<Dashboard/>}/>
+                <Route path="about" element={<About/>}/>
+                <Route path="restaurant/:id" element={<Restaurant/>}/>
+                <Route path="dish/:id" element={<Dish/>}/>
+              </Route>
             <Route path="/login" element={<Navigate to='/' replace/>}/>
           </>
 

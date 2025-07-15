@@ -4,6 +4,7 @@
 @use './restaurantsGrid';
 @use './dishesGrid';
 @use './login';
+@use './orderList';
 
 *{
     padding: 0;
@@ -21,9 +22,7 @@
         min-height: 80vh;
         display: flex;
         padding-inline: 150px;
-        .current-order{
-            width:20vw;
-        }
+       
         .main-content{
             flex:1;
         }

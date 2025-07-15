@@ -1,4 +1,4 @@
-import React,{createContext,useContext,useState,useEffect, Children, use} from 'react';
+import {createContext,useContext,useState} from 'react';
 import supabase from '../services/supabase';
 
 
@@ -33,7 +33,6 @@ export const UsersProvider = ({children}) =>{
 
             if(error) throw error;
 
-            console.log(data);
             setUser(data);
             sessionStorage.setItem(SESSION_ITEM,JSON.stringify(data));
 
