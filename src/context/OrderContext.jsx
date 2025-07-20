@@ -21,7 +21,6 @@ export const OrdersProvider = ({children})=>{
 
     const clearCart = ()=>{
         setCart([]);
-        console.log(cart);
 
     }
     
@@ -90,7 +89,6 @@ export const OrdersProvider = ({children})=>{
             .eq('user_id',user_id);
             if(error) throw error;
             setOrdersHistory(data);
-            console.log('data',data)
 
         } catch (err) {
             console.log(err.message)

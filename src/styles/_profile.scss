@@ -1,0 +1,62 @@
+@use './variables' as *;
+
+.profile-page{
+
+    .user-data{
+        color: $text;
+        padding: 20px 0 50px 0;
+    }
+
+    .order-history{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        
+        .order{
+            padding: 20px;
+            width: 500px;
+            border: 1px solid $text;
+            border-radius: 10px;
+        }
+
+        .order-data{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid $blue;
+            padding-bottom: 20px;
+        }
+
+        .order-items{
+            display: flex;
+            flex-direction:column;
+            gap: 30px;
+            padding-top: 20px;
+            .order-item{
+                display: flex;
+                align-items: center;
+                
+                img{
+                    width: 30px;
+                    height: 30px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
+                .item-title{
+                    font-weight: 700;
+                    margin-inline-start: 20px;
+                    flex: 1;
+                }
+            }
+        }
+
+        .order-sum{
+            border-top: 1px solid $blue;
+            padding-top: 30px;
+            margin-top: 30px;
+            text-align: right;
+        }
+    }
+
+
+}

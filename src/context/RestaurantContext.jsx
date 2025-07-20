@@ -63,7 +63,6 @@ export const RestaurantProvider = ({children}) => {
 
             const {data,error} = await supabase.from('tasty_near_dishes').select('*').eq('restaurant_id',restaurantId);
             if(error) throw error;
-            console.log(data);
             setDishes(data || []);
 
         } catch (err) {

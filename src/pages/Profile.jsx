@@ -1,6 +1,7 @@
 import { useUsers } from "../context/UserContext"
 import { useOrders } from "../context/OrderContext"
 import { useEffect } from "react";
+import { format, parseISO } from 'date-fns'
 
 function Profile() {
 
@@ -10,8 +11,6 @@ function Profile() {
 
     useEffect(()=>{
         getHistoryOrders(user.user.id);
-        // console.log(user.user);
-        console.log('order',ordersHistory);
     },[])
 
     return (
@@ -20,18 +19,27 @@ function Profile() {
            <div className="user-data">
                 {user.user.email}
            </div>
+
            <div className="order-history">
                 {ordersHistory.map(order => (
                     <div key={order.id} className="order">
-                        <p>Date: {order.created_at}</p>
+                        <div className="order-data">
+                            <p>Date: {format(parseISO(order.created_at), 'PPpp')}</p>
+                            <p>Order ID: {order.id}</p>
+                        </div>
+
                         <div className="order-items">
                             {order.content.map(item=>(
                                 <div className="order-item">
-                                    <p>{item.title}</p>
-                                    <p>{item.qty}</p>
-                                    <p>{item.price}</p>
+                                    <img src={item.image} alt={item.title} />
+                                    <p className="item-title">{item.title}</p>
+                                    <p className="item-price">${item.price} x {item.qty}   =  <b>${(item.qty * item.price).toFixed(2)}</b></p>
                                 </div>
                             ))}
+                        </div>
+
+                        <div className="order-sum">
+                            <p>Total: <b>39.99$</b></p>
                         </div>
                     </div>
                 ))}
