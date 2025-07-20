@@ -83,7 +83,6 @@ export const OrdersProvider = ({children})=>{
 
     const getHistoryOrders = async (user_id)=>{
         if(!user_id) return;
-
         setOrderLoading(true);
         try {
             const {data,error} = await supabase.from('teast_near_orders')
@@ -91,6 +90,7 @@ export const OrdersProvider = ({children})=>{
             .eq('user_id',user_id);
             if(error) throw error;
             setOrdersHistory(data);
+            console.log('data',data)
 
         } catch (err) {
             console.log(err.message)

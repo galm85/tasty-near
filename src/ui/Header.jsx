@@ -16,7 +16,7 @@ function Header() {
             </div>
             <div className='header__navigation'>
                 <NavLink to='/about' className={(isActive) => isActive ? 'nav-link active-link' : 'nav-link'} >About</NavLink>
-                <NavLink to='/walla' className={(isActive) => isActive ? 'nav-link active-link' : 'nav-link'} >Profile</NavLink>
+                <NavLink to='/profile' className={(isActive) => isActive ? 'nav-link active-link' : 'nav-link'} >Profile</NavLink>
             </div>
             <div className='header__user'>
                 <button className='btn logout-btn' onClick={()=>logout()}>Logout</button>

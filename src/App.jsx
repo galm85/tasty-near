@@ -11,6 +11,7 @@ import AppLayout from "./ui/AppLayout";
 import { RestaurantProvider } from "./context/RestaurantContext";
 import { useUsers } from "./context/UserContext";
 import { OrdersProvider } from "./context/OrderContext";
+import Profile from "./pages/Profile";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             }>
                 <Route index element={<Dashboard/>}/>
                 <Route path="about" element={<About/>}/>
+                <Route path="profile" element={<Profile />}/>
                 <Route path="restaurant/:id" element={<Restaurant/>}/>
                 <Route path="dish/:id" element={<Dish/>}/>
               </Route>
