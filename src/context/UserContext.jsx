@@ -26,15 +26,24 @@ export const UsersProvider = ({children}) =>{
             setUserLoading(true);
             setUserError(null);
 
-            const {data,error} = await supabase.auth.signInWithPassword({
+            const {data:authData,error} = await supabase.auth.signInWithPassword({
                 email:email,
                 password:password
             })
-
             if(error) throw error;
 
-            setUser(data);
-            sessionStorage.setItem(SESSION_ITEM,JSON.stringify(data));
+            if(authData.user){
+                const {data:profile} = await supabase.from('teast_near_profiles')
+                    .select('*')
+                    .eq('user_id',authData.user.id)
+                    .single();
+                    console.log('profile ',profile)
+                    setUser(profile);
+                    sessionStorage.setItem(SESSION_ITEM,JSON.stringify(profile));
+            }else{
+                setUser(null);
+                sessionStorage.removeItem(SESSION_ITEM);
+            }
 
         }catch(err){
             console.log(err.message)

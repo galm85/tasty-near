@@ -12,6 +12,7 @@ export const useOrders = ()=>{
 
 export const OrdersProvider = ({children})=>{
     const [cart,setCart] = useState([]);
+    const [totalPrice,setTotalPrice] = useState(0);
     const [orderLoading,setOrderLoading] = useState(false);
     const [orderError,setOrderError] = useState(null);
     const [ordersHistory,setOrdersHistory] = useState([]);
@@ -21,11 +22,11 @@ export const OrdersProvider = ({children})=>{
 
     const clearCart = ()=>{
         setCart([]);
-
+        setTotalPrice(0);
     }
     
     const updateCart = (item,op)=>{
-
+        
         let existItem = cart.find(i => i.id === item.id);
 
         if(existItem){
@@ -44,18 +45,22 @@ export const OrdersProvider = ({children})=>{
             })
 
             setCart(tempCart);
+            calculateTotalPrice(tempCart);
             
         }else{
             const newItem = {...item,qty:1}
-            setCart(prev => [...prev,newItem]);
+            const updatedCart = [...cart,newItem];
+            setCart(updatedCart);
+            calculateTotalPrice(updatedCart);
         }
 
+       
     }
 
     const removeItem = (itemId) =>{
         const filteredOrder = cart.filter(i => i.id !== itemId)
         setCart(filteredOrder);
-
+        calculateTotalPrice(filteredOrder);
     }
 
     const createOrder = async (user_id)=>{
@@ -77,6 +82,7 @@ export const OrdersProvider = ({children})=>{
             console.log(err.message);
         }finally{
             setOrderLoading(false);
+            setTotalPrice(0);
         }
     }
 
@@ -97,6 +103,13 @@ export const OrdersProvider = ({children})=>{
         }
     }
 
+
+    const calculateTotalPrice = (cart)=>{
+        let totalPrice  = cart.reduce((acc,cur) => acc + (cur.qty * cur.price), 0);
+        console.log(totalPrice)
+        setTotalPrice(totalPrice);
+       
+    }
     const value = {
         cart,
         orderLoading,
@@ -106,7 +119,8 @@ export const OrdersProvider = ({children})=>{
         updateCart,
         removeItem,
         createOrder,
-        getHistoryOrders
+        getHistoryOrders,
+        totalPrice
     }
 
     return <OrdersContext.Provider value={value}>{children}</OrdersContext.Provider>

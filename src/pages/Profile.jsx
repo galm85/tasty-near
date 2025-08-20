@@ -10,14 +10,17 @@ function Profile() {
 
 
     useEffect(()=>{
-        getHistoryOrders(user.user.id);
+        getHistoryOrders(user.user_id);
     },[])
 
     return (
         <div className="profile-page">
             {orderLoading && <div>Loading...</div>}
            <div className="user-data">
-                {user.user.email}
+                <p><b>Name:</b> {user.first_name} {user.last_name} </p>
+                <p><b>Email:</b> {user.email} </p>
+                <p><b>Phone:</b> {user.phone} </p>
+
            </div>
 
            <div className="order-history">
