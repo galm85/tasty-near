@@ -12,6 +12,7 @@ import { RestaurantProvider } from "./context/RestaurantContext";
 import { useUsers } from "./context/UserContext";
 import { OrdersProvider } from "./context/OrderContext";
 import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           {!user ? 
           <>
           <Route path="login" element={<Login/>}/>
+          <Route path="signup" element={<Signup/>}/>
           <Route path="*" element={<Navigate to='/login' replace/>}/>
           </>
             :
@@ -43,6 +45,7 @@ function App() {
                 <Route path="dish/:id" element={<Dish/>}/>
               </Route>
             <Route path="/login" element={<Navigate to='/' replace/>}/>
+            <Route path="/signup" element={<Navigate to='/' replace/>}/>
           </>
 
         }

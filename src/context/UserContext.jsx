@@ -1,5 +1,7 @@
-import {createContext,useContext,useState} from 'react';
-import supabase from '../services/supabase';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import {auth} from '../firebase/config';
+import { signInUser,signUpUser,signOutUser,getUserData } from '../services/authService';
 
 
 const SESSION_ITEM = 'teast-near';
@@ -20,46 +22,78 @@ export const UsersProvider = ({children}) =>{
     const [userLoading,setUserLoading] = useState(false); 
     const [userError,setUserError] = useState(null); 
 
+    // Listen to Firebase auth state changes
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser)=>{
+            setUserLoading(true);
+            try{
+                if(firebaseUser){
+                    // User is signed in, get their profile data from Firestore
+                    const profile = await getUserData(firebaseUser.uid);
+                    const userData = {
+                        id:firebaseUser.uid,
+                        email:firebaseUser.email,
+                        ...profile
+                    }
+
+                    setUser(userData);
+                    sessionStorage.setItem(SESSION_ITEM, JSON.stringify(userData));
+                }else{
+                    setUser(null);
+                    sessionStorage.removeItem(SESSION_ITEM);
+                }
+            }catch(error){
+                console.error('user Error: ',error);
+                setUserError(error.message);
+            }finally{
+                setUserLoading(false)
+            }
+        });
+
+        return unsubscribe;
+    },[])
   
     const loginUser = async (email,password)=>{
         try{
             setUserLoading(true);
             setUserError(null);
-
-            const {data:authData,error} = await supabase.auth.signInWithPassword({
-                email:email,
-                password:password
-            })
-            if(error) throw error;
-
-            if(authData.user){
-                const {data:profile} = await supabase.from('teast_near_profiles')
-                    .select('*')
-                    .eq('user_id',authData.user.id)
-                    .single();
-                    console.log('profile ',profile)
-                    setUser(profile);
-                    sessionStorage.setItem(SESSION_ITEM,JSON.stringify(profile));
-            }else{
-                setUser(null);
-                sessionStorage.removeItem(SESSION_ITEM);
-            }
+            await signInUser(email,password);
 
         }catch(err){
-            console.log(err.message)
+            console.log('login: ', err.message);
             setUserError(err.message)
         }finally{
             setUserLoading(false)
         }
     }
 
-    const logout = ()=>{
-        sessionStorage.removeItem(SESSION_ITEM);
-        setUser(null);
+ 
+
+    const signupUser = async (email,password,userData)=>{
+        try{
+            setUserLoading(true);
+            setUserError(null);
+            // Firebase will handle the auth state change automatically
+            await signUpUser(email, password, userData);
+        }catch(error){
+            console.log('Signup Error: ',error.message);
+            setUserError(error.message);
+        }finally{
+            setUserLoading(false);
+        }
     }
 
 
-    const value = {user,userLoading,userError,loginUser,logout}
+    const logout = async ()=>{
+      try {
+        await signOutUser();
+      } catch (error) {
+        console.error('Error signing out:', error);
+      }
+    }
+
+
+    const value = {user,userLoading,userError,loginUser,signupUser,logout}
 
     return <UsersContext.Provider value={value}>{children}</UsersContext.Provider>
 }
