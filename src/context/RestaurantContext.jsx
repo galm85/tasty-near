@@ -1,5 +1,6 @@
-import React,{createContext,useContext,useState} from 'react';
-import supabase from '../services/supabase';
+import {createContext,useContext,useState} from 'react';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
+import { db } from '../firebase/config';
 
 // create the context
 const RestaurantContext = createContext();
@@ -28,7 +29,10 @@ export const RestaurantProvider = ({children}) => {
             setLoading(true);
             setError(null);
 
-            const {data,error} = await supabase.from('tasty_near_restaurants').select('*');
+          // get all restaurant from firebase
+          const restaurantsRef = collection(db,'restaurants');
+          const querySnapshot = await getDocs(restaurantsRef);
+          const data = querySnapshot.docs.map(doc => ({id:doc.id,...doc.data()}));
             if(error) throw error;
             setRestaurants(data || []);
         } catch (err) {
@@ -43,8 +47,10 @@ export const RestaurantProvider = ({children}) => {
             setLoading(true);
             setError(null);
 
-            const {data,error} = await supabase.from('tasty_near_dishes').select('*');
-          
+            const dishesRef = collection(db,'dishes');
+            const querySnapshot = await getDocs(dishesRef);
+            const data = querySnapshot.docs.map(doc => ({id:doc.id,...doc.data()}));
+
             if(error) throw error;
             setDishes(data || []);
 
@@ -61,7 +67,11 @@ export const RestaurantProvider = ({children}) => {
             setLoading(true);
             setError(null);
 
-            const {data,error} = await supabase.from('tasty_near_dishes').select('*').eq('restaurant_id',restaurantId);
+            const dishesRef = collection(db,'dishes');
+            const q = query(dishesRef, where('restaurant_id','==',restaurantId));
+            const querySnapshot = await getDocs(q);
+            const data = querySnapshot.docs.map(doc => ({id:doc.id,...doc.data()}));
+
             if(error) throw error;
             setDishes(data || []);
 
