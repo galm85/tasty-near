@@ -42,43 +42,153 @@
     
 }
 
-.dish-page{
-    padding: 20px 10px;
-    width: 900px;
-    &__title{
+.dish-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    // Breadcrumb Navigation
+    &__breadcrumb {
+        margin-bottom: 30px;
+        
+        .breadcrumb-link {
+            background: none;
+            border: none;
+            color: $blue;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+            transition: color 0.2s ease;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    
+    // Header Section
+    &__header {
+        text-align: center;
+        margin-bottom: 40px;
+        
+        @media (max-width: 768px) {
+            margin-bottom: 30px;
+        }
+    }
+    
+    &__title {
         color: $blue;
-        font-size: 42px;
-        font-weight: 300;
+        font-size: 48px;
+        font-weight: 600;
         text-transform: uppercase;
-        margin-block: 30px;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+        
+        @media (max-width: 768px) {
+            font-size: 36px;
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 28px;
+        }
     }
-
-    &__content{
+    
+    &__category {
+        display: inline-block;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    // Main Content
+    &__main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 40px;
+        
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+    
+    // Media Section
+    &__media {
         display: flex;
-        gap: 30px;
+        justify-content: center;
     }
-
-    &__image{
-        width: 450px;
-        object-fit: contain;
-        height: auto;
+    
+    &__image {
+        width: 100%;
+        max-width: 500px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+        
+        &:hover {
+            transform: scale(1.02);
+        }
     }
-
-    &__description{
-        font-size: 22px;
-        color: $text;
-        font-weight: 300;
-        flex: 1;
-    }
-
-    &__price{
-        font-size: 42px;
-        color: $text;
-        padding: 20px;
-    }
-
-    &__actions{
+    
+    // Info Section
+    &__info {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
+    
+    &__details {
+        margin-bottom: 30px;
+    }
+    
+    &__description {
+        font-size: 18px;
+        color: $text;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid $blue;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+  
+    
+    // Purchase Section
+    &__purchase {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e9ecef;
+        text-align: center;
+    }
+    
+    &__price {
+        font-size: 42px;
+        color: $blue;
+        font-weight: 700;
+        margin-bottom: 25px;
+        
+        &::before {
+            content: '$';
+            font-size: 28px;
+            vertical-align: top;
+            margin-right: 4px;
+        }
+    }
+    
+    
+    
+  
+    
+  
 }
