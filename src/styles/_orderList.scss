@@ -16,6 +16,7 @@
       padding-inline: 40px;
 
   }
+
   &__title {
     color: $blue;
   }
@@ -45,6 +46,23 @@
       .item-remove {
         margin-inline-start: 20px;
       }
+    }
+  }
+
+  &__total-price{
+    width: 100%;
+    height: 60px;
+    padding-top: 5px;
+    text-align: start;
+    color: $blue;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 40px;
+    border-top: 1px solid $blue;
+    span{
+      font-weight: 700;
+      display: inline-block;
+      padding-inline-start: 5px;
     }
   }
 
