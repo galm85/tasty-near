@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../assets/images/logo.png';
 import { useUsers } from '../context/UserContext';
+import { CiLogout } from "react-icons/ci";
 
 function Header() {
 
@@ -19,7 +20,8 @@ function Header() {
                 <NavLink to='/profile' className={(isActive) => isActive ? 'nav-link active-link' : 'nav-link'} >Profile</NavLink>
             </div>
             <div className='header__user'>
-                <button className='btn logout-btn' onClick={()=>logout()}>Logout</button>
+                <button className='btn logout-btn' onClick={()=>logout()}><CiLogout />
+</button>
 
             </div>
         </div>

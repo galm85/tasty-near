@@ -8,8 +8,8 @@ function Dashboard() {
     const {restaurants,loading,error,dishes,getAllRestaurants,getAllDishes,getRestaurantDishes}  = useRestaurant()
    
     useEffect(()=>{      
-        getAllRestaurants();
-        getAllDishes();
+        // getAllRestaurants();
+        // getAllDishes();
     },[])
    
    

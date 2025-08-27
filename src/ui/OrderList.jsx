@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useOrders } from "../context/OrderContext"
 import { useUsers } from "../context/UserContext";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+import { BsCart3 } from "react-icons/bs";
 
 function OrderList() {
 
@@ -11,14 +14,15 @@ function OrderList() {
     return (
         <>
         
-        <button className="hide-cart" onClick={()=>setCartDisplay(!cartDisplay)}>{cartDisplay ? "Hide":"Show"}</button>
        
          <aside className={cartDisplay ?  'cart-list show-cart' : 'cart-list'}>
+            <button className="hide-cart toggle-cart" onClick={()=>setCartDisplay(!cartDisplay)}>{cartDisplay ? <FaArrowLeft /> :<BsCart3 />}</button>
             
-         
            {orderLoading && <div className="order-loading">Loading</div>}
 
-            <h3 className="cart-list__title">{user.email}</h3>
+            {cartDisplay && <>
+            
+            <h3 className="cart-list__title">{user.name}'s Cart</h3>
          
             <div className="cart-list__items">
                 {cart.map(item => (
@@ -43,7 +47,7 @@ function OrderList() {
                 {cart.length > 0 && <button onClick={()=>createOrder(user.user_id)}>Order Now</button>}
                 {cart.length > 0 && <button onClick={()=>clearCart()}>Clear Cart</button>}
             </div>
-            
+            </> }
          
          </aside>
           </>

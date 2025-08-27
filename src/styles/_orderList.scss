@@ -1,17 +1,20 @@
 @use "./variables" as *;
 
 .cart-list {
-  width: 20vw;
-  padding-top: 50px;
+  padding-top: 100px;
   transition: all ease 0.2s;
   display: flex;
   flex-direction: column;
-  width: 0;
+  width: 100px;
   overflow: hidden;
+  position: relative;
+  border-right: 1px solid $blue;
 
   &.show-cart{
       width: 20vw;
       border-right: 1px solid $blue;
+      padding-inline: 40px;
+
   }
   &__title {
     color: $blue;
@@ -50,10 +53,3 @@
   }
 }
 
-.hide-cart {
-    position: absolute;
-    top: 12vh;
-    left: 40px;
-    width: 50px;
-    height: 20px;
-  }
