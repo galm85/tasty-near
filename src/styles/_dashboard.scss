@@ -1,0 +1,16 @@
+@use './variables' as *;
+
+.dashboard{
+
+
+    &__title{
+        font-size: 32px;
+        font-weight: 300;
+        color: $blue;
+        text-transform: uppercase;
+    }
+
+    &__content{
+        padding-top: 30px;
+    }
+}

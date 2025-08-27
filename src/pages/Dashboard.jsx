@@ -8,14 +8,14 @@ function Dashboard() {
     const {restaurants,loading,error,dishes,getAllRestaurants,getAllDishes,getRestaurantDishes}  = useRestaurant()
    
     useEffect(()=>{      
-        // getAllRestaurants();
-        // getAllDishes();
+        getAllRestaurants();
+        getAllDishes();
     },[])
    
    
     return ( 
         <div className="dashboard">
-            <h1>Dashboard</h1>
+            <h1 className="dashboard__title">What are you looking for today?</h1>
             {loading ? <p>Loading...</p> : 
                 <div className="dashboard__content">
                     <RestaurantsGrid restaurants={restaurants}/>

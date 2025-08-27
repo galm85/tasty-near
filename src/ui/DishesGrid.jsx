@@ -6,10 +6,13 @@ function DishesGrid({dishes}) {
         <div className="dishes-grid">
             {dishes.map(dish => (
                 <Link key={dish.id} to={`/dish/${dish.id}`} className="dish" state={{dish}}>
-
                     <img className="dish-image" src={dish.image ? dish.image :Logo} alt={dish.title} />
-                    <p className="dish-title">{dish.title}<span>{dish.price}</span></p>
-                    </Link>
+                    <div className="dish-content">
+                         <p className="dish-title">{dish.title}</p>
+                        <p className="dish-price">${dish.price.toFixed(2)}</p>
+                    </div>
+                  
+                </Link>
             ))}
         </div>
     )

@@ -11,7 +11,7 @@
   border-right: 1px solid $blue;
 
   &.show-cart{
-      width: 20vw;
+      width: 300px;
       border-right: 1px solid $blue;
       padding-inline: 40px;
 
@@ -24,28 +24,41 @@
   &__items {
     width: 100%;
     flex: 1;
+    padding-top: 50px;
+
     .cart-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 5px;
+      flex-wrap: wrap;
+      &:not(:last-child) {
+        border-bottom: 1px solid $blue;
+      }
       .item-title {
         flex: 1;
         padding-inline: 10px;
       }
       .item-image {
-        width: 50px;
-        border-radius: 40px;
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
       }
 
       .item-qty {
         display: flex;
         gap: 10px;
         align-items: center;
-      }
-      .item-remove {
+        width: 100%;
+        padding: 10px;
+        span{
+          display: inline-block;
+        }
+         .item-remove {
         margin-inline-start: 20px;
       }
+      }
+     
     }
   }
 
@@ -67,6 +80,9 @@
   }
 
   &__actions{
+    display: flex;
+    justify-content: space-between;
+    padding-block: 20px;
 
   }
 }

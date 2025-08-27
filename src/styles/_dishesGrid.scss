@@ -4,30 +4,40 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     column-gap: 20px;
+    row-gap: 50px;
     width: 800px;
    
     .dish{
         text-decoration: none;
-        border-radius: 10px;
         overflow: hidden;
+        display: block;
         .dish-image{
             width: 100%;
             height: 200px;
             object-fit: cover;
+            border-radius: 20px;
         }
-        .dish-title{
-            color: $text;
-            font-weight: 400;
-            padding: 5px;
-            transition: all ease 0.2s;
-        }
+        .dish-content{
+            padding-inline: 5px;
 
-        &:hover{
             .dish-title{
-                color: $background;
-                background-color: $blue;
+                color: $text;
+                font-weight: 400;
+                transition: all ease 0.2s;
+                margin-bottom: 5px;
+
             }
+            
+            .dish-price{
+                font-size: 16px;
+                font-weight: 300;
+                color: $text;
+            }
+        
         }
+        
+
+       
     }
     
 }

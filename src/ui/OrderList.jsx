@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useOrders } from "../context/OrderContext"
 import { useUsers } from "../context/UserContext";
 import { FaArrowLeft } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
+import { IoTrashBin } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
+import { FiMinus } from "react-icons/fi";
 
 function OrderList() {
 
@@ -27,11 +29,11 @@ function OrderList() {
                             <img className="item-image" src={item.image} alt={item.title}/>
                             <p className="item-title">{item.title}</p>
                             <div className="item-qty">
-                                <button onClick={()=>updateCart(item,'add')}>+</button>
+                                <button className="btn btn-add" onClick={()=>updateCart(item,'add')}><IoMdAdd /></button>
                                 <span>{item.qty}</span>
-                                <button onClick={()=>updateCart(item,'less')}>-</button>
+                                <button className="btn btn-less" onClick={()=>updateCart(item,'less')}><FiMinus /></button>
+                                <button className="btn item-remove" onClick={()=>removeItem(item.id)}><IoTrashBin /></button>
                             </div>
-                            <button className="item-remove" onClick={()=>removeItem(item.id)}>remove</button>
                         </div>
                     ))}
                 </div>
@@ -41,8 +43,8 @@ function OrderList() {
                 </div>
 
                 <div className="cart-list__actions">
-                    {cart.length > 0 && <button onClick={()=>createOrder(user.user_id)}>Order Now</button>}
-                    {cart.length > 0 && <button onClick={()=>clearCart()}>Clear Cart</button>}
+                    {cart.length > 0 && <button className="btn btn-order-now" onClick={()=>createOrder(user.user_id)}>Order Now</button>}
+                    {cart.length > 0 && <button className="btn btn-clear-order" onClick={()=>clearCart()}>Clear Cart</button>}
                 </div>
             </>}
          

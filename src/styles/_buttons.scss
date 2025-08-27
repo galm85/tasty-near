@@ -70,7 +70,6 @@
 }
 
 
-
 .hide-cart {
   position: absolute;
   top: 30px;
@@ -80,4 +79,31 @@
   border: none;
   cursor: pointer;
   font-size: 30px;
+}
+
+.btn-order-now{
+  font-size: 12px;
+  border: 1px solid $blue;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.btn-clear-order{
+  font-size: 12px;
+  border: 1px solid $blue;
+  padding: 5px;
+  color: $background;
+  background-color: $blue;
+    text-transform: uppercase;
+
+}
+.btn-add{
+color: $text;
+}
+
+.btn-less{
+  color: $text;
+}
+.item-remove{
+  color: $red;
 }
