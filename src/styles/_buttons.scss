@@ -121,6 +121,20 @@ color: $text;
 .btn-less{
   color: $text;
 }
+
 .item-remove{
   color: $red;
+}
+
+
+.submit-btn{
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 1px solid $text;
+  transition: all ease-in 0.2s;
+  color: $text;
+  &:hover{
+    color: $background;
+    background-color: $text;
+  }
 }

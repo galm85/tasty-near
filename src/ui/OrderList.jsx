@@ -6,9 +6,11 @@ import { BsCart3 } from "react-icons/bs";
 import { IoTrashBin } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 function OrderList() {
 
+    const navigate = useNavigate();
     const {cart,clearCart,updateCart,removeItem,createOrder,orderLoading, totalPrice} = useOrders()
     const {user} = useUsers();
     const [cartDisplay,setCartDisplay] = useState(true)
@@ -43,7 +45,8 @@ function OrderList() {
                 </div>
 
                 <div className="cart-list__actions">
-                    {cart.length > 0 && <button className="btn btn-order-now" onClick={()=>createOrder(user.user_id)}>Order Now</button>}
+                    {/* {cart.length > 0 && <button className="btn btn-order-now" onClick={()=>createOrder(user.user_id)}>Order Now</button>} */}
+                    {cart.length > 0 && <button className="btn btn-order-now" onClick={()=>navigate('create-order')}>Order Now</button>}
                     {cart.length > 0 && <button className="btn btn-clear-order" onClick={()=>clearCart()}>Clear Cart</button>}
                 </div>
             </>}

@@ -1,4 +1,7 @@
 import {createContext,useContext,useState} from 'react';
+import { collection, addDoc, getDocs, query, where, orderBy, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase/config';
+
 import supabase from '../services/supabase';
 
 const OrdersContext = createContext();
@@ -16,8 +19,6 @@ export const OrdersProvider = ({children})=>{
     const [orderLoading,setOrderLoading] = useState(false);
     const [orderError,setOrderError] = useState(null);
     const [ordersHistory,setOrdersHistory] = useState([]);
-
-
 
 
     const clearCart = ()=>{
@@ -63,26 +64,38 @@ export const OrdersProvider = ({children})=>{
         calculateTotalPrice(filteredOrder);
     }
 
-    const createOrder = async (user_id)=>{
+    const sendNewOrder = async (user)=>{
     
-        if(!user_id || !cart.length) return;
+        if(!user.id || !cart.length) return;
 
         setOrderLoading(true);
-        
-        const order = {content:cart,user_id:user_id}
+        setOrderError(null);
+
+        const order = {
+            createdAt:serverTimestamp(),
+            user_id:user.id,
+            name:user.name,
+            address:user.address,
+            phone:user.phone,
+            email:user.email,
+            cart:JSON.stringify(cart),
+            totalPrice:totalPrice.toFixed(2),
+            status:'pending'
+        }
 
         try{
-            const {data,error} = await supabase.from('teast_near_orders')
-            .insert(order)
-            .select();
-            if(error) throw error;
-            clearCart();
+          const docRef = await addDoc(collection(db,'orders'),order);
+          clearCart();
+          return {success:true,orderId:docRef.id}
 
         }catch(err){
             console.log(err.message);
+            setOrderError(err.message);
+            return {success:false,message:err.message}
+
         }finally{
             setOrderLoading(false);
-            setTotalPrice(0);
+           
         }
     }
 
@@ -110,6 +123,8 @@ export const OrdersProvider = ({children})=>{
         setTotalPrice(totalPrice);
        
     }
+
+
     const value = {
         cart,
         orderLoading,
@@ -118,7 +133,7 @@ export const OrdersProvider = ({children})=>{
         clearCart,
         updateCart,
         removeItem,
-        createOrder,
+        sendNewOrder,
         getHistoryOrders,
         totalPrice
     }
