@@ -1,7 +1,7 @@
 import { useUsers } from "../context/UserContext"
 import { useOrders } from "../context/OrderContext"
 import { useEffect } from "react";
-import { format, parseISO } from 'date-fns'
+import { format, fromUnixTime } from 'date-fns'
 import Loader from '../ui/Loader';
 
 function Profile() {
@@ -18,7 +18,7 @@ function Profile() {
         <div className="profile-page">
             {orderLoading && <Loader overlay={true}/> }
            <div className="user-data">
-                <p><b>Name:</b> {user.first_name} {user.last_name} </p>
+                <p><b>Name:</b> {user.name}</p>
                 <p><b>Email:</b> {user.email} </p>
                 <p><b>Phone:</b> {user.phone} </p>
 
@@ -28,10 +28,8 @@ function Profile() {
                 {ordersHistory.map(order => (
                     <div key={order.id} className="order">
                         <div className="order-data">
-                            {/* <p>Date: {format(parseISO(order.created_at), 'PPpp')}</p> */}
+                            <p>Date: {format(fromUnixTime(order.createdAt.seconds), 'dd/MM/yyyy HH:mm')}</p>
                             <p>Order ID: {order.id}</p>
-                            <p>Client Name: {order.name}</p>
-                            <p>phone: {order.phone}</p>
                         </div>
 
                         <div className="order-items">
