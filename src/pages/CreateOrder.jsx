@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useOrders } from "../context/OrderContext"
 import { useUsers } from "../context/UserContext";
 import { useState } from "react";
+import Loader from "../ui/Loader";
 
 
 function CreateOrder() {
@@ -75,6 +76,8 @@ function CreateOrder() {
 
     return (
         <div className="new-order">
+
+            {orderLoading && <Loader overlay={true}/>}
             <h1 className="new-order__title">Create New order</h1>
             
             <section className="new-order__order-details">
