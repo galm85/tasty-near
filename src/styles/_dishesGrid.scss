@@ -82,73 +82,74 @@
     }
 }
 
+
 .dish-page {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 40px;
     
+    // Breadcrumb Navigation
     &__breadcrumb {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         
         .breadcrumb-link {
             background: none;
             border: none;
             color: $blue;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            padding: 8px 0;
-            transition: color 0.2s ease;
+            padding: 12px 0;
+            transition: all 0.2s ease;
+            font-family: $main_font;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             
             &:hover {
-                text-decoration: underline;
+                color: darken($blue, 10%);
+                transform: translateX(-4px);
             }
         }
     }
     
+    // Header Section
     &__header {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 60px;
     }
     
     &__title {
         color: $blue;
-        font-size: 48px;
-        font-weight: 600;
+        font-size: 52px;
+        font-weight: 700;
         text-transform: uppercase;
-        margin-bottom: 15px;
+        margin: 0;
         letter-spacing: 2px;
     }
     
-    &__category {
-        display: inline-block;
-        color: white;
-        padding: 6px 16px;
-        border-radius: 20px;
-        font-size: 14px;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    
+    // Main Content
     &__main {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        margin-bottom: 40px;
+        gap: 80px;
+        align-items: start;
     }
     
+    // Media Section
     &__media {
         display: flex;
         justify-content: center;
+        position: sticky;
+        top: 40px;
     }
     
     &__image {
         width: 100%;
-        max-width: 500px;
-        height: 400px;
+        height: 500px;
         object-fit: cover;
-        border-radius: 16px;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+        box-shadow: 0 16px 48px rgba(0, 48, 73, 0.15);
         transition: transform 0.3s ease;
         
         &:hover {
@@ -156,60 +157,126 @@
         }
     }
     
+    // Info Section
     &__info {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        gap: 40px;
     }
     
     &__details {
-        margin-bottom: 30px;
+        flex: 1;
     }
     
     &__description {
         font-size: 18px;
         color: $text;
-        line-height: 1.7;
-        margin-bottom: 25px;
-        padding: 30px;
-        background: #f8f9fa;
-        border-radius: 12px;
+        line-height: 1.8;
+        margin: 0;
+        padding: 36px;
+        background: white;
+        border-radius: 16px;
         border-left: 4px solid $blue;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 16px rgba(0, 48, 73, 0.08);
     }
     
+    // Purchase Section
     &__purchase {
         background: white;
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e9ecef;
-        text-align: center;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 48, 73, 0.12);
+        border: 2px solid rgba(0, 48, 73, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
     }
     
     &__price {
-        font-size: 42px;
+        font-size: 56px;
         color: $blue;
         font-weight: 700;
-        margin-bottom: 25px;
+        margin: 0;
         
         &::before {
             content: '$';
-            font-size: 28px;
+            font-size: 36px;
             vertical-align: top;
             margin-right: 4px;
+        }
+    }
+
+    .btn.order-btn {
+        width: 100%;
+        padding: 18px 48px;
+        background-color: $blue;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 700;
+        font-family: $main_font;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 16px rgba(0, 48, 73, 0.2);
+
+        &:hover {
+            background-color: darken($blue, 8%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 48, 73, 0.3);
+        }
+
+        &:active {
+            transform: translateY(0);
         }
     }
 
     @media (max-width: 1024px) {
         padding: 32px 24px;
 
+        &__breadcrumb {
+            margin-bottom: 32px;
+        }
+
+        &__header {
+            margin-bottom: 48px;
+        }
+
         &__title {
-            font-size: 36px;
+            font-size: 40px;
         }
 
         &__main {
-            gap: 40px;
+            gap: 48px;
+        }
+
+        &__image {
+            height: 400px;
+        }
+
+        &__description {
+            font-size: 17px;
+            padding: 28px;
+        }
+
+        &__purchase {
+            padding: 32px;
+        }
+
+        &__price {
+            font-size: 48px;
+
+            &::before {
+                font-size: 32px;
+            }
+        }
+
+        .btn.order-btn {
+            padding: 16px 40px;
+            font-size: 17px;
         }
     }
 }
