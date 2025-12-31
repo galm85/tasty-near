@@ -2,27 +2,73 @@
 
 .restaurants-grid{
     display: flex;
-    padding: 30px 0;
+    padding: 0 0 24px 0;
     gap: 12px;
-    overflow: scroll;
-    border-bottom: 1px solid $blue;
-    margin-bottom:30px;
-    width: 800px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 2px solid rgba(0, 48, 73, 0.1);
+    margin-bottom: 32px;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: $blue $background;
+
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $background;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $blue;
+        border-radius: 4px;
+        
+        &:hover {
+            background: darken($blue, 10%);
+        }
+    }
+
+    .restaurant {
+        flex-shrink: 0;
+    }
 
     .restaurant-btn{
-        padding: 5px 12px;
-        background-color: $background;
-        border: 1px solid $blue;
+        padding: 12px 24px;
+        background-color: white;
+        border: 2px solid $blue;
         color: $blue;
         font-family: $main_font;
-        font-size: 22px;
-        border-radius: 20px;
-        min-width: 100px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 24px;
+        min-width: 120px;
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(0, 48, 73, 0.1);
+
         &:hover{
-            color: $background;
+            color: white;
             background-color: $blue;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 48, 73, 0.2);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        gap: 10px;
+        margin-bottom: 28px;
+
+        .restaurant-btn {
+            padding: 10px 20px;
+            font-size: 15px;
+            min-width: 100px;
         }
     }
 }
