@@ -33,7 +33,6 @@ function Profile() {
                             <p>email: {order.email}</p>
                             <p>address: {order.address}</p>
                             <p>status: {order.status}</p>
-                            <p>Order ID: {order.id}</p>
                             
                             <p>Date: {format(fromUnixTime(order.createdAt.seconds), 'dd/MM/yyyy HH:mm')}</p>
                             <p>Order ID: {order.id}</p>
