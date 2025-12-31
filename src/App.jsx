@@ -14,6 +14,7 @@ import { OrdersProvider } from "./context/OrderContext";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import CreateOrder from "./pages/CreateOrder";
+import Loader from "./ui/Loader";
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
 
 
   return (
-      <BrowserRouter>
+      <BrowserRouter >
+      <Loader overlay={true}/>
         <Routes>
           {!user ? 
           <>
