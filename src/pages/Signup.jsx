@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signUpUser } from '../services/authService';
 import { useUsers } from '../context/UserContext';
+import Loader from '../ui/Loader';
 
 function Signup() {
 
@@ -50,7 +51,6 @@ function Signup() {
             return;
         }
 
-        // Firebase signup logic
         setSignupLoading(true);
         setSignupError('');
         
@@ -59,7 +59,6 @@ function Signup() {
                 name: formData.name,
                 phone: formData.phone
             });
-            // User will be automatically logged in and redirected
         } catch (error) {
             setSignupError(error.message);
         } finally {
@@ -74,7 +73,8 @@ function Signup() {
     }, [user, navigate])
 
     return (
-        <div className="login-page"> {/* Reuse same CSS classes */}
+        <div className="login-page">
+            {loading && <Loader overlay={true}/>}
             <h1 className="login-page__title">Sign Up</h1>
 
             <form className="login-page__form" onSubmit={handleSubmit}>
@@ -129,10 +129,9 @@ function Signup() {
                     <span className="input-error">{errors.password}</span>
                 </div>
                 
-                {/* Display signup error */}
                 {signupError && (
                     <div className="login-error">
-                        <span style={{color: 'red'}}>{signupError}</span>
+                        <span>{signupError}</span>
                     </div>
                 )}
                 
@@ -147,12 +146,11 @@ function Signup() {
                 </div>
             </form>
 
-            <div style={{textAlign: 'center', marginTop: '20px'}}>
+            <div className="signup-link">
                 <p>Already have an account? 
                     <button 
                         type="button" 
-                        onClick={() => navigate('/login')} 
-                        style={{background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}
+                        onClick={() => navigate('/login')}
                     >
                         Login here
                     </button>

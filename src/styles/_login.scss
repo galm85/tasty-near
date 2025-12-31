@@ -1,57 +1,192 @@
 @use './variables' as *;
 
 .login-page{
-    padding-block: 100px;
+    max-width: 100%;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
 
     &__title{
         color: $blue;
-        font-size: 42px;
+        font-size: 48px;
+        font-weight: 700;
         text-transform: uppercase;
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 48px;
+        letter-spacing: 2px;
     }
 
     &__form{
-        background-color: $blue;
-        height: 500px;
-        width: 400px;
-        margin: auto;
-        padding: 50px;
-        border-radius: 40px;
+        background: white;
+        width: 480px;
+        padding: 48px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 48, 73, 0.12);
+        border: 2px solid rgba(0, 48, 73, 0.1);
 
         .input-group{
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            margin-bottom: 50px;
+            gap: 8px;
+            margin-bottom: 32px;
 
             label{
-                color: $background;
-                font-size: 14px;
-                font-weight: 300;
+                color: $blue;
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 4px;
             }
 
             input{
                 background: $background;
-                border:none;
-                padding: 10px;
-                border-radius: 4px;
+                border: 2px solid transparent;
+                padding: 14px 16px;
+                border-radius: 10px;
                 color: $text;
-                font-size: 22px;  
-                outline: none;       
+                font-size: 16px;
+                font-family: $main_font;
+                outline: none;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    border-color: $blue;
+                    background: white;
+                }
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+            }
+
+            .input-error {
+                color: $red;
+                font-size: 13px;
+                font-weight: 600;
+                min-height: 18px;
+                margin-top: 4px;
+            }
+        }
+
+        .login-error {
+            background: rgba(193, 18, 31, 0.1);
+            border: 2px solid $red;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+
+            span {
+                color: $red;
+                font-size: 14px;
+                font-weight: 600;
             }
         }
 
         .form-actions{
             width: 100%;
             text-align: center;
+            margin-top: 40px;
+
             .submit-btn{
-                background-color: $background;
-                color: $blue;
-                font-weight: 400;
+                width: 100%;
+                background-color: $blue;
+                color: white;
+                font-weight: 700;
+                font-size: 17px;
                 text-transform: uppercase;
-                margin-top: 50px;
+                letter-spacing: 1px;
+                padding: 16px 32px;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-family: $main_font;
+                box-shadow: 0 4px 16px rgba(0, 48, 73, 0.2);
+
+                &:hover:not(:disabled) {
+                    background-color: darken($blue, 8%);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 20px rgba(0, 48, 73, 0.3);
+                }
+
+                &:active:not(:disabled) {
+                    transform: translateY(0);
+                }
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
             }
+        }
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 32px;
+        
+        p {
+            color: $text;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: $blue;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-family: $main_font;
+            margin-left: 6px;
+            transition: all 0.2s ease;
+            padding: 0;
+
+            &:hover {
+                text-decoration: underline;
+                color: darken($blue, 10%);
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        padding: 48px 24px;
+
+        &__title {
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+
+        &__form {
+            width: 440px;
+            padding: 40px;
+
+            .input-group {
+                margin-bottom: 28px;
+
+                input {
+                    padding: 13px 14px;
+                    font-size: 15px;
+                }
+            }
+
+            .form-actions {
+                margin-top: 32px;
+
+                .submit-btn {
+                    padding: 15px 28px;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .signup-link {
+            margin-top: 28px;
         }
     }
 }

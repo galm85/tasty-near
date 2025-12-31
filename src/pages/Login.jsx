@@ -5,24 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../services/authService';
 import Loader from '../ui/Loader';
 
-
-// my user for dev
-// galm85@gmail.com
-// camila49
-
 function Login() {
 
-    // const {user,loginUser,userLoading,userError} = useUsers()
-    
     const {user,loading} = useUsers();
     const navigate = useNavigate();
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [errors,setErrors] = useState({email:'',password:''})
-    const [loginLoading, setLoginLoading] = useState(false); // Local loading state
-    const [loginError, setLoginError] = useState(''); // Local error state
-
-
+    const [loginLoading, setLoginLoading] = useState(false);
+    const [loginError, setLoginError] = useState('');
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -54,9 +45,7 @@ function Login() {
         }finally{
             setLoginLoading(false);
         }
-
     }
-
 
     useEffect(()=>{
         if(user){
@@ -84,7 +73,7 @@ function Login() {
 
                 {loginError && (
                     <div className='login-error'>
-                        <span style={{color:'red'}}>{loginError}</span>
+                        <span>{loginError}</span>
                     </div>
                 )}
                 <div className="form-actions">
@@ -92,16 +81,15 @@ function Login() {
                 </div>
             </form>
 
-            <div style={{textAlign: 'center', marginTop: '20px'}}>
-            <p>Don't have an account? 
-                <button 
-                type="button" 
-                onClick={() => navigate('/signup')} 
-                style={{background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}
-                >
-                Sign up here
-                </button>
-            </p>
+            <div className="signup-link">
+                <p>Don't have an account? 
+                    <button 
+                        type="button" 
+                        onClick={() => navigate('/signup')}
+                    >
+                        Sign up here
+                    </button>
+                </p>
             </div>
         </div>
     )
