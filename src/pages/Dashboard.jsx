@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRestaurant } from "../context/RestaurantContext"
 import RestaurantsGrid from '../ui/RestaurantsGrid'
 import DishesGrid from "../ui/DishesGrid";
+import Loader from '../ui/Loader';
 
 function Dashboard() {
 
     const {restaurants,loading,error,dishes,getAllRestaurants,getAllDishes,getRestaurantDishes}  = useRestaurant()
-   
+
     useEffect(()=>{      
         getAllRestaurants();
         getAllDishes();
@@ -16,7 +17,7 @@ function Dashboard() {
     return ( 
         <div className="dashboard">
             <h1 className="dashboard__title">What are you looking for today?</h1>
-            {loading ? <p>Loading...</p> : 
+            {loading ? <Loader overlay={true}/> : 
                 <div className="dashboard__content">
                     <RestaurantsGrid restaurants={restaurants}/>
                     <DishesGrid dishes={dishes}/>

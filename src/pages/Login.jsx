@@ -3,6 +3,12 @@ import {useUsers} from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 import { signInUser } from '../services/authService';
+import Loader from '../ui/Loader';
+
+
+// my user for dev
+// galm85@gmail.com
+// camila49
 
 function Login() {
 
@@ -60,6 +66,8 @@ function Login() {
 
     return (
         <div className="login-page">
+
+            {loading && <Loader overlay={true}/>}
             <h1 className="login-page__title">Login</h1>
 
             <form className="login-page__form" onSubmit={handleSubmit}>
@@ -84,17 +92,17 @@ function Login() {
                 </div>
             </form>
 
-<div style={{textAlign: 'center', marginTop: '20px'}}>
-  <p>Don't have an account? 
-    <button 
-      type="button" 
-      onClick={() => navigate('/signup')} 
-      style={{background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}
-    >
-      Sign up here
-    </button>
-  </p>
-</div>
+            <div style={{textAlign: 'center', marginTop: '20px'}}>
+            <p>Don't have an account? 
+                <button 
+                type="button" 
+                onClick={() => navigate('/signup')} 
+                style={{background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer'}}
+                >
+                Sign up here
+                </button>
+            </p>
+            </div>
         </div>
     )
 }

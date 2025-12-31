@@ -24,7 +24,6 @@ function App() {
 
   return (
       <BrowserRouter >
-      <Loader overlay={true}/>
         <Routes>
           {!user ? 
           <>
