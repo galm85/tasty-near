@@ -2,8 +2,6 @@ import {createContext,useContext,useState} from 'react';
 import { collection, addDoc, getDocs, query, where, orderBy, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
-import supabase from '../services/supabase';
-
 const OrdersContext = createContext();
 
 export const useOrders = ()=>{
@@ -101,15 +99,18 @@ export const OrdersProvider = ({children})=>{
 
     const getHistoryOrders = async (user_id)=>{
         if(!user_id) return;
-        setOrderLoading(true);
         try {
-            const {data,error} = await supabase.from('teast_near_orders')
-            .select('*')
-            .eq('user_id',user_id);
-            if(error) throw error;
-            setOrdersHistory(data);
+            setOrderLoading(true);
+            setOrderError(null);
+            const ordersRef = collection(db,'orders');
+            const q = query(ordersRef, where('user_id','==',user_id));
+            const querySnapshot = await getDocs(q);
+            const data = querySnapshot.docs.map(doc => ({id:doc.id,...doc.data()}));
+            if(orderError) throw orderError;
+            setOrdersHistory(data || []);
 
         } catch (err) {
+            setOrderError(err.message);
             console.log(err.message)
         }finally{
             setOrderLoading(false);

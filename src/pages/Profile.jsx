@@ -2,6 +2,7 @@ import { useUsers } from "../context/UserContext"
 import { useOrders } from "../context/OrderContext"
 import { useEffect } from "react";
 import { format, parseISO } from 'date-fns'
+import Loader from '../ui/Loader';
 
 function Profile() {
 
@@ -10,12 +11,12 @@ function Profile() {
 
 
     useEffect(()=>{
-        getHistoryOrders(user.user_id);
+        getHistoryOrders(user.id);
     },[])
 
     return (
         <div className="profile-page">
-            {orderLoading && <div>Loading...</div>}
+            {orderLoading && <Loader overlay={true}/> }
            <div className="user-data">
                 <p><b>Name:</b> {user.first_name} {user.last_name} </p>
                 <p><b>Email:</b> {user.email} </p>
@@ -27,13 +28,15 @@ function Profile() {
                 {ordersHistory.map(order => (
                     <div key={order.id} className="order">
                         <div className="order-data">
-                            <p>Date: {format(parseISO(order.created_at), 'PPpp')}</p>
+                            {/* <p>Date: {format(parseISO(order.created_at), 'PPpp')}</p> */}
                             <p>Order ID: {order.id}</p>
+                            <p>Client Name: {order.name}</p>
+                            <p>phone: {order.phone}</p>
                         </div>
 
                         <div className="order-items">
-                            {order.content.map(item=>(
-                                <div className="order-item">
+                            {order.cart && JSON.parse(order.cart).map(item=>(
+                                <div className="order-item" key={item.id}>
                                     <img src={item.image} alt={item.title} />
                                     <p className="item-title">{item.title}</p>
                                     <p className="item-price">${item.price} x {item.qty}   =  <b>${(item.qty * item.price).toFixed(2)}</b></p>
@@ -42,7 +45,7 @@ function Profile() {
                         </div>
 
                         <div className="order-sum">
-                            <p>Total: <b>39.99$</b></p>
+                            <p>Total: <b>${Number(order.totalPrice).toFixed(2)}</b></p>
                         </div>
                     </div>
                 ))}
