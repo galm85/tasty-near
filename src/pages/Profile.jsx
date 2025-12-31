@@ -17,17 +17,24 @@ function Profile() {
     return (
         <div className="profile-page">
             {orderLoading && <Loader overlay={true}/> }
-           <div className="user-data">
+           <section className="user-data">
                 <p><b>Name:</b> {user.name}</p>
                 <p><b>Email:</b> {user.email} </p>
                 <p><b>Phone:</b> {user.phone} </p>
 
-           </div>
+           </section>
 
-           <div className="order-history">
+           <section className="order-history">
                 {ordersHistory.map(order => (
                     <div key={order.id} className="order">
                         <div className="order-data">
+                            <p>Name: {order.name}</p>
+                            <p>Phone: {order.phone}</p>
+                            <p>email: {order.email}</p>
+                            <p>address: {order.address}</p>
+                            <p>status: {order.status}</p>
+                            <p>Order ID: {order.id}</p>
+                            
                             <p>Date: {format(fromUnixTime(order.createdAt.seconds), 'dd/MM/yyyy HH:mm')}</p>
                             <p>Order ID: {order.id}</p>
                         </div>
@@ -47,7 +54,7 @@ function Profile() {
                         </div>
                     </div>
                 ))}
-           </div>
+           </section>
         </div>
     )
 }
